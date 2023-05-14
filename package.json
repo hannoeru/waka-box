@@ -1,25 +1,24 @@
 {
   "name": "waka-box",
   "version": "3.0.0",
+  "packageManager": "pnpm@8.5.0",
   "description": "📊 Update a gist to contain your weekly WakaTime stats",
-  "author": "Matan Kushner <hello@matchai.me>",
   "license": "ISC",
+  "author": "Matan Kushner <hello@matchai.me>",
   "scripts": {
-    "status": "esno ./src/index.ts"
+    "status": "tsx ./src/index.ts"
   },
   "dependencies": {
-    "@octokit/rest": "18.0.12",
-    "axios": "0.21.0",
-    "dotenv": "8.2.0"
+    "@octokit/rest": "19.0.8",
+    "axios": "1.4.0",
+    "dotenv": "16.0.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config-ts": "^0.4.3",
-    "@octokit/types": "^6.1.1",
-    "eslint": "^7.15.0",
-    "esno": "0.3.0",
-    "typescript": "^4.1.2"
-  },
-  "eslintConfig": {
-    "extends": "@antfu/eslint-config-ts"
+    "@hannoeru/eslint-config": "^0.9.4",
+    "@octokit/types": "^9.2.2",
+    "@types/node": "^20.1.4",
+    "eslint": "^8.40.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.0.4"
   }
 }

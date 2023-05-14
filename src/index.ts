@@ -1,6 +1,8 @@
-import dotenv from 'dotenv'
-import axios from 'axios'
+/* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable no-console */
 import { Octokit } from '@octokit/rest'
+import axios from 'axios'
+import dotenv from 'dotenv'
 import { RANGE } from './range'
 
 dotenv.config()
@@ -34,22 +36,20 @@ const getMyStats = async() => {
   try {
     const response = await wakatime.get(`users/current/stats/${range}`)
     wakatimeData = response.data
-    wakatimeData.data.languages.forEach((item) => {
+    wakatimeData.data.languages.forEach((item: any) => {
       console.log(`${item?.name}: ${item?.text}`)
     })
-  }
-  catch (error) {
+  } catch (error) {
     console.error(`Unable to get wakatime\n${error}`)
   }
   return wakatimeData
 }
 
-const updateGist = async(stats) => {
+const updateGist = async(stats: any) => {
   let gist
   try {
     gist = await octokit.gists.get({ gist_id: gistId })
-  }
-  catch (error) {
+  } catch (error) {
     console.error(`Unable to get gist\n${error}`)
   }
 
@@ -70,7 +70,7 @@ const updateGist = async(stats) => {
 
   try {
     // Get original filename to update that same file
-    const filename: string = Object.keys(gist.data.files)[0] || '*'
+    const filename: string = Object.keys(gist?.data.files || {})[0] || '*'
     await octokit.gists.update({
       gist_id: gistId,
       files: {
@@ -80,8 +80,7 @@ const updateGist = async(stats) => {
         },
       },
     })
-  }
-  catch (error) {
+  } catch (error) {
     console.error(`Unable to update gist\n${error}`)
   }
 }
@@ -105,7 +104,7 @@ const bar_styles: string[] = [
   '⚪⚫',
 ]
 
-const unicodeProgressBar = (p, style = 7, min_size = 20, max_size = 20) => {
+const unicodeProgressBar = (p: any, style = 7, min_size = 20, max_size = 20) => {
   let d
   let full
   let m

@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
     "lib": [
-      "esnext",
+      "ESNext",
       "DOM"
     ],
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "esModuleInterop": true,
     "strict": true,
     "strictNullChecks": true,
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src"]
 }

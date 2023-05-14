@@ -2,7 +2,8 @@ name: Update Gist
 
 on:
   push:
-    branches: master
+    branches:
+      - main
 
   schedule:
     - cron: "0 6 * * *"
@@ -13,9 +14,21 @@ jobs:
   update-gist:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Install
-        run: npx pnpm i --store=node_modules/.pnpm-store
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install deps
+        run: pnpm install
+
       - name: Update gist
         run: npm run status
         env:
